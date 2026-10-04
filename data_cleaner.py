@@ -6,7 +6,7 @@
 #    Se invece uno dei due vincoli non è rispettato, allora si mantiene quello che rispetta i vincoli e si scarta l'altro.
 #   Per statistiche contiamo quanti dati arbitrariamente scartiamo per questo motivo, in particolare contiamo solo se scaritamo due polinee differenti.
 # 4. se restano ancora duplicati di TRIP_ID, significia che sono corse effettivamente distinte ma con lo stesso TRIP_ID. 
-#    In questo caso TRIP_id verra riassegnato in modo univoco.
+#    In questo caso TRIP_id verra riassegnato in modo univoco. 
 
 import pandas as pd
 import json
