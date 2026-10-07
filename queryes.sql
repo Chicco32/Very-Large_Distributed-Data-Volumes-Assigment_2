@@ -49,13 +49,18 @@ ORDER BY trip_count DESC
 LIMIT 20;
 -- SQLBook: Markup
 What is the most used call type per taxi?  
-Call type B with 796270 calls
+Call type B globally with 796270 calls  
+| taxi id | A call | B call | C call |
+|---|---|---|---|
+|20000380 | 774 | 1512 | 1221|
+|20000589 | 738 | 2869 | 1053|
+| 20000233 | 1192 | 3274 | 1794|
 -- SQLBook: Code
-SELECT
+SELECT `TAXI_ID`,
     COUNT(CASE WHEN call_type = 'A' THEN 1 END) AS A_count,
     COUNT(CASE WHEN call_type = 'B' THEN 1 END) AS B_count,
     COUNT(CASE WHEN call_type = 'C' THEN 1 END) AS C_count
-FROM rides;
+FROM rides GROUP BY `TAXI_ID`;
 -- SQLBook: Markup
 For each call type, compute:
 - the average trip duration and distance, 
@@ -71,7 +76,7 @@ A) 6,38 km B) 5,99 km C) 7,78 km
 - Share of trips:
 1) 00-06: 305321 18,44%
 2) 06-12: 476730 28,80%
-3) 13-18: 509806 30,80%
+3) 12-18: 509806 30,80%
 4) 18-24: 363728 22%
 -- SQLBook: Code
 SELECT AVG(distance_km) AS avg_distance_km, AVG(duration_seconds) / 60 AS avg_duration_min, `CALL_TYPE`
@@ -147,7 +152,7 @@ FROM trips_with_end
 WHERE DATE(call_date) <> DATE(end_date);
 -- SQLBook: Markup
 Find the trips whose start and end points are within 50 m of each other (circular trips).  
-Found 8199 circular trips
+Found 21497 circular trips
 1) 1372638303620000112 20mt
 2) 1372638513620000473 50 mt
 3) 1372639092620000233 9 mt
