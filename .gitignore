@@ -2,3 +2,8 @@
 __pycache__/
 .vscode/
 porto/
+porto/porto.csv
+porto/porto_load_test.csv
+porto/porto_cleaned.csv
+Connection.py
+queries.py
