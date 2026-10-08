@@ -53,11 +53,17 @@ class PolylineInfoHelper:
         except Exception:
             return False
             
+        # Convert the radius to kilometers to avoid Unit.METERS enum crashes
+        radius_km = radius_meters / 1000.0
+            
         for point in coordinates:
             current_point = (point[1], point[0])
             
-            distance = haversine(target_coords, current_point, unit=Unit.METERS)
-            if distance <= radius_meters:
+            # Use Unit.KILOMETERS
+            distance = haversine(target_coords, current_point, unit=Unit.KILOMETERS)
+            
+            # Compare against the converted radius
+            if distance <= radius_km:
                 return True
                 
         return False
